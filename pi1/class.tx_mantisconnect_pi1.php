@@ -53,10 +53,65 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 	public function main($content, array $settings) {
 		$this->init($settings);
 		$this->pi_setPiVarDefaults();
-		//$this->initTemplate();
 		$this->pi_USER_INT_obj = 1;	// Configuring so caching is not expected.
 
-		t3lib_div::debug($this->settings);
+		if (!$this->settings['wsdl']) {
+			die('Plugin ' . $this->prefixId . ' is not configured properly!');
+		}
+
+		$connectorConfig = $this->getConnectorConfig();
+		if ($connectorConfig) {
+			$connector = t3lib_div::makeInstance($connectorConfig['class']);
+			/* @var $connector tx_mantisconnect_connector */
+			if (!($connector instanceof tx_mantisconnect_connector)) {
+				throw new UnexpectedValueException('$connector must implement interface tx_mantisconnect_connector', 1280836382);
+			}
+
+			$config = array(
+				'project'     => $this->settings['project'],
+				'category'    => $this->settings['category'],
+				'summary'     => '',
+				'description' => '',
+			);
+			$config = array_merge($config, $this->settings['connectors.']['global.']);
+			if (isset($this->settings['connectors.'][$connectorConfig['id'] . '.'])) {
+				$config = array_merge($config, $this->settings['connectors.'][$connectorConfig['id'] . '.']);
+			}
+
+				// Take care of subkey 'id' for Mantis API
+			$subkeys = array('project', 'view_state', 'severity', 'handler', 'priority', 'status', 'resolution', 'reproducibility');
+			foreach ($config as $key => &$value) {
+				if (t3lib_div::inArray($subkeys, $key)) {
+					$value = array('id' => $value);
+				}
+			}
+			$mantis = t3lib_div::makeInstance(
+				'tx_mantisconnect_mantis',
+				$this->settings['wsdl'],
+				$this->settings['username'],
+				$this->settings['password']
+			);
+
+			$connector->initialize($config, $mantis);
+		}
+	}
+
+	/**
+	 * Returns the configuration of the connector to be used.
+	 *
+	 * @return array
+	 */
+	protected function getConnectorConfig() {
+		if ($this->settings['connector']) {
+			$availableConnectors = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$this->extKey]['connectors'];
+			foreach ($availableConnectors as $connector) {
+				if ($connector['id'] === $this->settings['connector']) {
+					return $connector;
+				}
+			}
+			throw new UnexpectedValueException('Invalid connector: ' . $this->settings['connector'], 1280836566);
+		}
+		return array();
 	}
 
 	/**
@@ -65,7 +120,10 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 	 * @param array $settings: Plugin configuration, as received by the main() method
 	 * @return void
 	 */
-	public function init(array $settings) {
+	protected function init(array $settings) {
+			// Base configuration is equal the the plugin's TS setup
+		$this->settings = $settings;
+
 			// Load the flexform and loop on all its values to override TS setup values
 			// Some properties use a different test (more strict than not empty) and yet some others no test at all
 			// see http://wiki.typo3.org/index.php/Extension_Development,_using_Flexforms
@@ -92,6 +150,20 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 					}
 				}
 			}
+		}
+
+			// Override configuration with TS from FlexForm itself
+		$flexformTyposcript = $this->settings['myTS'];
+		unset($this->settings['myTS']);
+		if ($flexformTyposcript) {
+			require_once(PATH_t3lib.'class.t3lib_tsparser.php');
+			$tsparser = t3lib_div::makeInstance('t3lib_tsparser');
+			// Copy settings into existing setup
+			$tsparser->setup = $this->settings;
+			// Parse the new Typoscript
+			$tsparser->parse($flexformTyposcript);
+			// Copy the resulting setup back into settings
+			$this->settings = $tsparser->setup;
 		}
 	}
 }

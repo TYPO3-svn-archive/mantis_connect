@@ -32,8 +32,53 @@
  * @license     http://www.gnu.org/copyleft/gpl.html
  * @version     SVN: $Id$
  */
-class tx_mantisconnect_powermail {
-	
+class tx_mantisconnect_powermail implements tx_mantisconnect_connector {
+
+	/**
+	 * @var array
+	 */
+	protected static $config;
+
+	/**
+	 * @var tx_mantisconnect_mantis
+	 */
+	protected static $mantis;
+
+	/**
+	 * Initializes the connector.
+	 *
+	 * @param array $config
+	 * @return void
+	 */
+	public function initialize(array $config, tx_mantisconnect_mantis $mantis) {
+			// Use hook in submit.php to send values to Mantis
+		$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['powermail']['PM_SubmitLastOne'][] = 'EXT:mantis_connect/connectors/' . basename(__FILE__) . ':' . __CLASS__;
+
+		self::$config = $config;
+		self::$mantis = $mantis;
+	}
+
+	/**
+	 * Hook from PowerMail used to send a new issue to Mantis when the form is submitted.
+	 *
+	 * @param string $content
+	 * @param array $conf
+	 * @param array $data
+	 * @param integer $ok
+	 * @param tx_powermail_submit $pObj
+	 * @return void
+	 */
+    public function PM_SubmitLastOneHook($content, array $conf, array $data, $ok, tx_powermail_submit $pObj) {
+		$issueData = self::$config;
+		unset($issueData['fields.']);
+
+		foreach (self::$config['fields.']['map.'] as $mantisField => $pmKey) {
+			$issueData[$mantisField] = $data[$pmKey];
+		}
+
+		self::$mantis->createIssue($issueData);
+	}
+
 }
 
 

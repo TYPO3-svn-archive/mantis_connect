@@ -1,5 +1,38 @@
 plugin.tx_mantisconnect_pi1 {
 
+		# Global configuration for connectors
+	connectors.global {
+			# View Status: 10=public, 50=private
+		view_state      = 10
+
+			# Severity: 10=feature, 20=trivial, 30=text, 40=tweak, 50=minor, 60=major, 70=crash, 80=block
+		severity        = 50
+
+			# Assigned To (ID)
+		handler         = 0
+
+			# Priority: 10=none, 20=low, 30=normal, 40=high, 50=urgent, 60=immediate
+		priority        = 30
+
+			# Status: 10=new, 20=feedback, 30=acknowledged, 40=confirmed, 50=assigned, 80=resolved, 90=closed
+		status          = 10
+
+			# Resolution: 10=open, 20=fixed, 30=reopened, 40=unable to reproduce, 50=not fixable, 60=duplicate, 70=no change required, 80=suspended, 90=won't fix
+		resolution      = 10
+
+			# Reproducibility: 10=always, 30=sometimes, 50=random, 70=have not tried, 90=unable to reproduce, 100=N/A
+		reproducibility = 10
+	}
+
+		# Configuration for PowerMail connector 
+	connectors.powermail {
+		#	# Map 'summary' in Mantis with field 'uid1' in PowerMail
+		#fields.map.summary = uid1
+		#
+		#	# Map 'description' in Mantis with field 'uid2' in PowerMail
+		#fields.map.description = uid2
+	}
+
 }
 
 ### SVN id ###

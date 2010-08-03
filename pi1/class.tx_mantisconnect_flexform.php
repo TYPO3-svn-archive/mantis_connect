@@ -97,7 +97,7 @@ class tx_mantisconnect_flexform {
 			$categories = $this->mantis->getCategories($this->config['project']);
 			$items = array();
 			foreach ($categories as $key => $category) {
-				$items[] = array($category, $key);
+				$items[] = array($category, $category);
 			}
 			$settings['items'] = array_merge($settings['items'], $items);
 		}
@@ -134,21 +134,21 @@ class tx_mantisconnect_flexform {
 		$flexForm = t3lib_div::xml2array($flexForm);
 
 		foreach ($flexForm['data'] as $sheet => $data) {
-        	foreach ($data as $lang => $value) {
-            	foreach ($value as $key => $val) {
+			foreach ($data as $lang => $value) {
+				foreach ($value as $key => $val) {
 					$this->config[$key] = $this->getFFvalue($flexForm, $key, $sheet);
-            	}
-            }
-        }
+				}
+			}
+		}
 
-        if ($this->config['wsdl']) {
-        	$this->mantis = t3lib_div::makeInstance(
-        		'tx_mantisconnect_mantis',
-        		$this->config['wsdl'],
-        		$this->config['username'],
-        		$this->config['password']
-        	);
-        }
+		if ($this->config['wsdl']) {
+			$this->mantis = t3lib_div::makeInstance(
+				'tx_mantisconnect_mantis',
+				$this->config['wsdl'],
+				$this->config['username'],
+				$this->config['password']
+			);
+		}
 	}
 
 	/**

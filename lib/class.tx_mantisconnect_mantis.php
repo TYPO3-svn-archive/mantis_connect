@@ -105,6 +105,16 @@ class tx_mantisconnect_mantis {
 	}
 
 	/**
+	 * Creates an issue in Mantis.
+	 *
+	 * @param array $data
+	 * @return integer
+	 */
+	public function createIssue(array $data) {
+		return $this->callMantis('mc_issue_add', array('issue' => $data));
+	}
+
+	/**
 	 * Performs a SOAP call to Mantis.
 	 *
 	 * @param string $method

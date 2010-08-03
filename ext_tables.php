@@ -17,15 +17,4 @@ t3lib_extMgm::addPiFlexFormValue($_EXTKEY . '_pi1', 'FILE:EXT:' . $_EXTKEY . '/p
 
 // Initialize static extension templates
 t3lib_extMgm::addStaticFile($_EXTKEY, 'pi1/static/', 'Mantis Connector');
-
-// Allow extensions to register themselves as connector providers
-$TYPO3_CONF_VARS['EXTCONF']['mantis_connect']['connectors'] = array();
-
-// Register built-in connectors
-$TYPO3_CONF_VARS['EXTCONF']['mantis_connect']['connectors'][] = array(
-	'id'     => 'powermail',
-	'class'  => 'tx_mantisconnect_powermail',
-	'method' => 'newIssue',
-	'label'  => 'LLL:EXT:' . $_EXTKEY . '/locallang_db.xml:connector.powermail'
-);
 ?>

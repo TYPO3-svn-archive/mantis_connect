@@ -4,6 +4,7 @@
 
 $extensionPath = t3lib_extMgm::extPath('mantis_connect');
 return array(
+	'tx_mantisconnect_connector' => $extensionPath . 'connectors/interface.tx_mantisconnect_connector.php',
 	'tx_mantisconnect_flexform' => $extensionPath . 'pi1/class.tx_mantisconnect_flexform.php',
 	'tx_mantisconnect_mantis' => $extensionPath . 'lib/class.tx_mantisconnect_mantis.php',
 	'tx_mantisconnect_powermail' => $extensionPath . 'connectors/class.tx_mantisconnect_powermail.php',
