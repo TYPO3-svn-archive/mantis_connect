@@ -1,0 +1,6 @@
+plugin.tx_mantisconnect_pi1 {
+
+}
+
+### SVN id ###
+# $Id: setup.txt 8910 2008-04-15 07:03:23Z rupi $

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for plugin &quot;tx_mantisconnect_pi1&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="pi_flexform.sheet_general">General</label>
+			<label index="pi_flexform.sheet_mantis">Mantis</label>
+			<label index="pi_flexform.connector">Connector</label>
+			<label index="pi_flexform.project">Project</label>
+			<label index="pi_flexform.category">Category</label>
+			<label index="pi_flexform.tsconfig">Typoscript for this content element (plugin.mantis_connect.[your TS])</label>
+			<label index="pi_flexform.mantis.wsdl">WSDL for Mantis. E.g., http://localhost/mantis/api/soap/mantisconnect.php?wsdl</label>
+			<label index="pi_flexform.mantis.username">Username</label>
+			<label index="pi_flexform.mantis.password">Password</label>
+		</languageKey>
+	</data>
+</T3locallang>
