@@ -70,10 +70,16 @@ class tx_mantisconnect_powermail implements tx_mantisconnect_connector {
 	 */
     public function PM_SubmitLastOneHook($content, array $conf, array $data, $ok, tx_powermail_submit $pObj) {
 		$issueData = self::$config;
-		unset($issueData['fields.']);
 
-		foreach (self::$config['fields.']['map.'] as $mantisField => $pmKey) {
-			$issueData[$mantisField] = $data[$pmKey];
+		$contentObj = t3lib_div::makeInstance('tslib_cObj');
+		$contentObj->start($data);
+
+		foreach ($issueData as $key => $value) {
+			if (substr($key, -1) === '.' && isset($value['cObject'])) {
+				$baseKey = substr($key, 0, strlen($key) - 1);
+				$issueData[$baseKey] = $contentObj->cObjGetSingle($value['cObject'], $value['cObject.']);
+				unset($issueData[$key]);
+			}
 		}
 
 		self::$mantis->createIssue($issueData);

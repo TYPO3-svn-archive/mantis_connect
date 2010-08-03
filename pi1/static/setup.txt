@@ -27,10 +27,12 @@ plugin.tx_mantisconnect_pi1 {
 		# Configuration for PowerMail connector 
 	connectors.powermail {
 		#	# Map 'summary' in Mantis with field 'uid1' in PowerMail
-		#fields.map.summary = uid1
+		#summary.cObject = TEXT
+		#summary.cObject.field = uid1
 		#
 		#	# Map 'description' in Mantis with field 'uid2' in PowerMail
-		#fields.map.description = uid2
+		#description.cObject = TEXT
+		#description.cObject.field = uid2
 	}
 
 }
