@@ -78,13 +78,6 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 				$config = array_merge($config, $this->settings['connectors.'][$connectorConfig['id'] . '.']);
 			}
 
-				// Take care of subkey 'id' for Mantis API
-			$subkeys = array('project', 'view_state', 'severity', 'handler', 'priority', 'status', 'resolution', 'reproducibility');
-			foreach ($config as $key => &$value) {
-				if (t3lib_div::inArray($subkeys, $key)) {
-					$value = array('id' => $value);
-				}
-			}
 			$mantis = t3lib_div::makeInstance(
 				'tx_mantisconnect_mantis',
 				$this->settings['wsdl'],
