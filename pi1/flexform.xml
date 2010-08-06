@@ -84,7 +84,7 @@
 							<config>
 								<type>input</type>
 								<size>48</size>
-								<eval>required,trim</eval>
+								<eval>trim</eval>
 							</config>
 						</TCEforms>
 					</wsdl>
@@ -95,7 +95,7 @@
 							<config>
 								<type>input</type>
 								<size>30</size>
-								<eval>required,trim</eval>
+								<eval>trim</eval>
 							</config>
 						</TCEforms>
 					</username>
@@ -106,8 +106,7 @@
 							<config>
 								<type>input</type>
 								<size>30</size>
-								<!-- <eval>required,password</eval> -->
-								<eval>required</eval>
+								<!-- <eval>password</eval> -->
 							</config>
 						</TCEforms>
 					</password>

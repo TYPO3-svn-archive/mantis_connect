@@ -1,0 +1,11 @@
+plugin.tx_mantisconnect {
+
+		# cat=plugin.tx_mantisconnect//a; type=string; label=LLL:EXT:mantis_connect/pi1/locallang.xml:pi_flexform.mantis.wsdl
+	wsdl =
+
+		# cat=plugin.tx_mantisconnect//a; type=string; label=LLL:EXT:mantis_connect/pi1/locallang.xml:pi_flexform.mantis.username
+	username =
+
+		# cat=plugin.tx_mantisconnect//a; type=string; label=LLL:EXT:mantis_connect/pi1/locallang.xml:pi_flexform.mantis.password
+	password =
+}

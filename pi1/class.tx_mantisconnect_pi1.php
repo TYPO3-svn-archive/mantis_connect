@@ -141,11 +141,7 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 						$value = $this->pi_getFFvalue($piFlexForm, $field, $sheet);	
 
 						if (!empty($value)) {
-							if (in_array($field, $explodeFlexFormFields)) {
-								$this->settings[$field] = explode(',', $value);
-							} else {
-								$this->settings[$field] = $value;
-							}
+							$this->settings[$field] = $value;
 						}
 					}
 				}

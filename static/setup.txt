@@ -1,5 +1,15 @@
+plugin.tx_mantisconnect {
+	wsdl = {$plugin.tx_mantisconnect.wsdl}
+	username = {$plugin.tx_mantisconnect.username}
+	password = {$plugin.tx_mantisconnect.password}
+}
+	
 plugin.tx_mantisconnect_pi1 {
 
+	wsdl < plugin.tx_mantisconnect.wsdl
+	username < plugin.tx_mantisconnect.username
+	password < plugin.tx_mantisconnect.password
+	
 		# Global configuration for connectors
 	connectors.global {
 			# View Status: 10=public, 50=private
@@ -36,6 +46,10 @@ plugin.tx_mantisconnect_pi1 {
 	}
 
 }
+
+plugin.tx_mantisconnect_func.projects = USER
+plugin.tx_mantisconnect_func.projects.userFunc < plugin.tx_mantisconnect
+plugin.tx_mantisconnect_func.projects.userFunc = user_mantisconnect_powermail->getProjects
 
 ### SVN id ###
 # $Id: setup.txt 8910 2008-04-15 07:03:23Z rupi $
