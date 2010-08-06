@@ -52,4 +52,4 @@ plugin.tx_mantisconnect_func.projects.userFunc < plugin.tx_mantisconnect
 plugin.tx_mantisconnect_func.projects.userFunc = user_mantisconnect_powermail->getProjects
 
 ### SVN id ###
-# $Id: setup.txt 8910 2008-04-15 07:03:23Z rupi $
+# $Id$
