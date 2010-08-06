@@ -61,7 +61,9 @@ class user_mantisconnect_powermail {
 			$this->addProjects($items, $projects, 0);
 		}
 
-		return $this->getPowermailSelect($this->cObj->data['uid'], $this->cObj->data['label'], $items);
+		$content = $config['debug'] ? 'FIELD: uid' . $this->cObj->data['uid'] : '';
+		$content .= $this->getPowermailSelect($this->cObj->data['uid'], $this->cObj->data['label'], $items);
+		return $content;
 	}
 
 	/**

@@ -2,6 +2,8 @@ plugin.tx_mantisconnect {
 	wsdl = {$plugin.tx_mantisconnect.wsdl}
 	username = {$plugin.tx_mantisconnect.username}
 	password = {$plugin.tx_mantisconnect.password}
+
+	debug = {$plugin.tx_mantisconnect.debug}
 }
 	
 plugin.tx_mantisconnect_pi1 {
