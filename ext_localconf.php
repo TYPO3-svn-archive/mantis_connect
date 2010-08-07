@@ -10,8 +10,8 @@ $TYPO3_CONF_VARS['EXTCONF']['mantis_connect']['connectors'] = array();
 
 // Register built-in connectors
 $TYPO3_CONF_VARS['EXTCONF']['mantis_connect']['connectors'][] = array(
-	'id'     => 'powermail',
-	'class'  => 'tx_mantisconnect_powermail',
-	'label'  => 'LLL:EXT:' . $_EXTKEY . '/locallang_db.xml:connector.powermail'
+	'id'    => 'powermail',
+	'class' => 'tx_mantisconnect_powermail',
+	'label' => 'LLL:EXT:' . $_EXTKEY . '/locallang_db.xml:connector.powermail'
 );
 ?>
