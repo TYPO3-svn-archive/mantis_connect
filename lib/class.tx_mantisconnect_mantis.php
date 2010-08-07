@@ -113,7 +113,7 @@ class tx_mantisconnect_mantis {
 	public function createIssue(array $data) {
 			// Take care of subkey 'id' for Mantis API
 		$subkeys = array('project', 'view_state', 'severity', 'handler', 'priority', 'status', 'resolution', 'reproducibility');
-		foreach ($config as $key => &$value) {
+		foreach ($data as $key => &$value) {
 			if (t3lib_div::inArray($subkeys, $key)) {
 				$value = array('id' => $value);
 			}
