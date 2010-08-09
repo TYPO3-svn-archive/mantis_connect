@@ -49,6 +49,7 @@ plugin.tx_mantisconnect_pi1 {
 
 }
 
+	# User function to retrieve the list of projects as a Mantis drop-down list
 plugin.tx_mantisconnect_func.projects = USER
 plugin.tx_mantisconnect_func.projects.userFunc < plugin.tx_mantisconnect
 plugin.tx_mantisconnect_func.projects.userFunc = user_mantisconnect_powermail->getProjects
