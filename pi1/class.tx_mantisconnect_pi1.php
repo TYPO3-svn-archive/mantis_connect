@@ -67,11 +67,15 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 				throw new UnexpectedValueException('$connector must implement interface tx_mantisconnect_connector', 1280836382);
 			}
 
+			$browserInfos = t3lib_utility_Client::getBrowserInfo(t3lib_div::getIndpEnv('HTTP_USER_AGENT'));
 			$config = array(
 				'project'     => $this->settings['project'],
 				'category'    => $this->settings['category'],
 				'summary'     => '',
 				'description' => '',
+				'platform'    => $browserInfos['system'],
+				'os'          => $browserInfos['browser'],
+				'os_build'    => $browserInfos['version'],
 			);
 			$config = array_merge($config, $this->settings['connectors.']['global.']);
 			if (isset($this->settings['connectors.'][$connectorConfig['id'] . '.'])) {
