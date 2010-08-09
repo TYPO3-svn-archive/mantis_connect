@@ -68,7 +68,7 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 			}
 
 			$browserInfos = t3lib_utility_Client::getBrowserInfo(t3lib_div::getIndpEnv('HTTP_USER_AGENT'));
-			$config = array(
+			$issueData = array(
 				'project'     => $this->settings['project'],
 				'category'    => $this->settings['category'],
 				'summary'     => '',
@@ -77,9 +77,9 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 				'os'          => $browserInfos['browser'],
 				'os_build'    => $browserInfos['version'],
 			);
-			$config = array_merge($config, $this->settings['connectors.']['global.']);
+			$issueData = array_merge($issueData, $this->settings['connectors.']['global.']);
 			if (isset($this->settings['connectors.'][$connectorConfig['id'] . '.'])) {
-				$config = array_merge($config, $this->settings['connectors.'][$connectorConfig['id'] . '.']);
+				$issueData = array_merge($issueData, $this->settings['connectors.'][$connectorConfig['id'] . '.']);
 			}
 
 			$mantis = t3lib_div::makeInstance(
@@ -89,7 +89,7 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 				$this->settings['password']
 			);
 
-			$connector->initialize($config, $mantis);
+			$connector->initialize($issueData, $mantis);
 		}
 	}
 
@@ -145,6 +145,12 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 			}
 		}
 
+
+			// Load full setup to allow references to outside definitions in 'myTS'
+		$globalSetup = $GLOBALS['TSFE']->tmpl->setup;
+		$localSetup = array('plugin.' => array($this->prefixId . '.' => $this->settings));
+		$setup = t3lib_div::array_merge_recursive_overrule($globalSetup, $localSetup);
+
 			// Override configuration with TS from FlexForm itself
 		$flexformTyposcript = $this->settings['myTS'];
 		unset($this->settings['myTS']);
@@ -152,11 +158,11 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 			require_once(PATH_t3lib.'class.t3lib_tsparser.php');
 			$tsparser = t3lib_div::makeInstance('t3lib_tsparser');
 			// Copy settings into existing setup
-			$tsparser->setup = $this->settings;
+			$tsparser->setup = $setup; 
 			// Parse the new Typoscript
-			$tsparser->parse($flexformTyposcript);
+			$tsparser->parse('plugin.' . $this->prefixId . '.' . $flexformTyposcript);
 			// Copy the resulting setup back into settings
-			$this->settings = $tsparser->setup;
+			$this->settings = $tsparser->setup['plugin.'][$this->prefixId . '.'];
 		}
 	}
 }
