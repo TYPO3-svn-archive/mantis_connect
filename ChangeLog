@@ -1,3 +1,7 @@
+10.08.2010  Xavier Perseguers  <typo3@perseguers.ch>
+
+	* Added constants for all new bug options
+
 09.08.2010  Xavier Perseguers  <typo3@perseguers.ch>
 
 	* Now storing OS, browser name and browser version automatically

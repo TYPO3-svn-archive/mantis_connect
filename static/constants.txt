@@ -1,15 +1,36 @@
 plugin.tx_mantisconnect {
 
-		# cat=plugin.tx_mantisconnect//a; type=string; label=LLL:EXT:mantis_connect/pi1/locallang.xml:pi_flexform.mantis.wsdl
+		# customsubcategory=api=LLL:EXT:mantis_connect/locallang_db.xml:constants.subcategories.api; cat=plugin.tx_mantisconnect/api; type=string; label=LLL:EXT:mantis_connect/pi1/locallang.xml:pi_flexform.mantis.wsdl
 	wsdl =
 
-		# cat=plugin.tx_mantisconnect//a; type=string; label=LLL:EXT:mantis_connect/pi1/locallang.xml:pi_flexform.mantis.username
+		# cat=plugin.tx_mantisconnect/api; type=string; label=LLL:EXT:mantis_connect/pi1/locallang.xml:pi_flexform.mantis.username
 	username =
 
-		# cat=plugin.tx_mantisconnect//a; type=string; label=LLL:EXT:mantis_connect/pi1/locallang.xml:pi_flexform.mantis.password
+		# cat=plugin.tx_mantisconnect/api; type=string; label=LLL:EXT:mantis_connect/pi1/locallang.xml:pi_flexform.mantis.password
 	password =
 
-		# cat=plugin.tx_mantisconnect//a; type=boolean; label=Debug
+		# customsubcategory=options=LLL:EXT:mantis_connect/locallang_db.xml:constants.subcategories.options; cat=plugin.tx_mantisconnect/options; type=int+; label=LLL:EXT:mantis_connect/locallang_db.xml:constants.options.view_state
+	view_state = 10
+
+		# cat=plugin.tx_mantisconnect/options; type=int+; label=LLL:EXT:mantis_connect/locallang_db.xml:constants.options.severity
+	severity = 50
+
+		# cat=plugin.tx_mantisconnect/options; type=int; label=LLL:EXT:mantis_connect/locallang_db.xml:constants.options.handler
+	handler =
+
+		# cat=plugin.tx_mantisconnect/options; type=int+; label=LLL:EXT:mantis_connect/locallang_db.xml:constants.options.priority
+	priority = 30
+
+		# cat=plugin.tx_mantisconnect/options; type=int+; label=LLL:EXT:mantis_connect/locallang_db.xml:constants.options.status
+	status = 10
+
+		# cat=plugin.tx_mantisconnect/options; type=int+; label=LLL:EXT:mantis_connect/locallang_db.xml:constants.options.resolution
+	resolution = 10
+
+		# cat=plugin.tx_mantisconnect/options; type=int+; label=LLL:EXT:mantis_connect/locallang_db.xml:constants.options.reproducibility
+	reproducibility = 10
+
+		# cat=plugin.tx_mantisconnect/enable; type=boolean; label=Debug
 	debug =
 }
 

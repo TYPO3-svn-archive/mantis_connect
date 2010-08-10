@@ -15,25 +15,25 @@ plugin.tx_mantisconnect_pi1 {
 		# Global configuration for connectors
 	connectors.global {
 			# View Status: 10=public, 50=private
-		view_state      = 10
+		view_state      = {$plugin.tx_mantisconnect.view_state}
 
 			# Severity: 10=feature, 20=trivial, 30=text, 40=tweak, 50=minor, 60=major, 70=crash, 80=block
-		severity        = 50
+		severity        = {$plugin.tx_mantisconnect.severity}
 
 			# Assigned To (ID)
-		handler         = 0
+		handler         = {$plugin.tx_mantisconnect.handler}
 
 			# Priority: 10=none, 20=low, 30=normal, 40=high, 50=urgent, 60=immediate
-		priority        = 30
+		priority        = {$plugin.tx_mantisconnect.priority}
 
 			# Status: 10=new, 20=feedback, 30=acknowledged, 40=confirmed, 50=assigned, 80=resolved, 90=closed
-		status          = 10
+		status          = {$plugin.tx_mantisconnect.status}
 
 			# Resolution: 10=open, 20=fixed, 30=reopened, 40=unable to reproduce, 50=not fixable, 60=duplicate, 70=no change required, 80=suspended, 90=won't fix
-		resolution      = 10
+		resolution      = {$plugin.tx_mantisconnect.resolution}
 
 			# Reproducibility: 10=always, 30=sometimes, 50=random, 70=have not tried, 90=unable to reproduce, 100=N/A
-		reproducibility = 10
+		reproducibility = {$plugin.tx_mantisconnect.reproducibility}
 	}
 
 		# Configuration for PowerMail connector 
