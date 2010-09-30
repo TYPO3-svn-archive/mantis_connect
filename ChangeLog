@@ -1,3 +1,7 @@
+2010-09-30  Xavier Perseguers  <typo3@perseguers.ch>
+
+	* Fixed fatal error when global TS configuration is not defined
+
 2010-08-10  Xavier Perseguers  <typo3@perseguers.ch>
 
 	* Updated bug screenshot and added advanced mapping example in documentation

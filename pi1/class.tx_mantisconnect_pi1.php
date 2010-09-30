@@ -77,7 +77,9 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 				'os'          => $browserInfos['browser'],
 				'os_build'    => $browserInfos['version'],
 			);
-			$issueData = array_merge($issueData, $this->settings['connectors.']['global.']);
+			if (is_array($this->settings['connectors.']['global.'])) {
+				$issueData = array_merge($issueData, $this->settings['connectors.']['global.']);
+			}
 			if (isset($this->settings['connectors.'][$connectorConfig['id'] . '.'])) {
 				$issueData = array_merge($issueData, $this->settings['connectors.'][$connectorConfig['id'] . '.']);
 			}
@@ -135,7 +137,7 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 			foreach ($piFlexForm['data'] as $sheet => $langData) {
 				foreach ($langData as $lang => $fields) {
 					foreach (array_keys($fields) as $field) {
-						$value = $this->pi_getFFvalue($piFlexForm, $field, $sheet);	
+						$value = $this->pi_getFFvalue($piFlexForm, $field, $sheet);
 
 						if (!empty($value)) {
 							$this->settings[$field] = $value;
@@ -158,7 +160,7 @@ class tx_mantisconnect_pi1 extends tslib_pibase {
 			require_once(PATH_t3lib.'class.t3lib_tsparser.php');
 			$tsparser = t3lib_div::makeInstance('t3lib_tsparser');
 			// Copy settings into existing setup
-			$tsparser->setup = $setup; 
+			$tsparser->setup = $setup;
 			// Parse the new Typoscript
 			$tsparser->parse('plugin.' . $this->prefixId . '.' . $flexformTyposcript);
 			// Copy the resulting setup back into settings
