@@ -11,7 +11,7 @@
 			<label index="pi_flexform.connector">Connector</label>
 			<label index="pi_flexform.project">Project</label>
 			<label index="pi_flexform.category">Category</label>
-			<label index="pi_flexform.tsconfig">Typoscript for this content element (plugin.mantis_connect.[your TS])</label>
+			<label index="pi_flexform.tsconfig">Typoscript for this content element (plugin.mantis_connect_pi1.[your TS])</label>
 			<label index="pi_flexform.mantis.wsdl">WSDL for Mantis: E.g., http://localhost/mantis/api/soap/mantisconnect.php?wsdl</label>
 			<label index="pi_flexform.mantis.username">Username</label>
 			<label index="pi_flexform.mantis.password">Password</label>
