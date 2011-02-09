@@ -22,16 +22,14 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-if (version_compare(TYPO3_version, '4.4.99', '>')) {
-	$pathEmMod = t3lib_extMgm::extPath('em') . 'mod1/';
-} else {
+if (t3lib_div::int_from_ver(TYPO3_version) < 4005000) {
 	$pathEmMod = PATH_typo3 . 'mod/tools/em/';
-}
 
-if (!defined('SOAP_1_2')) {
-	require_once($pathEmMod . 'class.nusoap.php');
+	if (!defined('SOAP_1_2')) {
+		require_once($pathEmMod . 'class.nusoap.php');
+	}
+	require_once($pathEmMod . 'class.em_soap.php');
 }
-require_once($pathEmMod . 'class.em_soap.php');
 
 /**
  * Library to connect to Mantis.
@@ -77,7 +75,12 @@ class tx_mantisconnect_mantis {
         $this->username = $username ? $username : FALSE;
         $this->password = $password ? $password : FALSE;
 
-        $this->soap = t3lib_div::makeInstance('em_soap');
+        if (t3lib_div::int_from_ver(TYPO3_version) >= 4005000) {
+			$this->soap = t3lib_div::makeInstance('tx_em_connection_soap');
+		} else {
+			$this->soap = t3lib_div::makeInstance('em_soap');
+		}
+
         try {
         	$this->soap->init($options, $this->username, $this->password);
         } catch (Exception $e) {

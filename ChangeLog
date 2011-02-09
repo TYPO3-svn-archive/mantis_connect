@@ -1,3 +1,7 @@
+2011-02-09  Xavier Perseguers  <typo3@perseguers.ch>
+
+	* Fixed SOAP inclusion when using TYPO3 4.5
+
 2010-09-30  Xavier Perseguers  <typo3@perseguers.ch>
 
 	* Fixed fatal error when global TS configuration is not defined
